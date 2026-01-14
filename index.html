@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人作品集 | 跨領域農業科技專家</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nature-green: #7ca982;
+            --water-blue: #a3c4bc;
+            --earth-brown: #967d69;
+            --paper-white: #f9f7f2;
+            --text-dark: #3d405b;
+            --accent-yellow: #e9c46a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--paper-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 水彩背景裝飾 */
+        .watercolor-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(60px);
+            opacity: 0.4;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .blob1 { width: 600px; height: 600px; top: -100px; right: -100px; background: var(--nature-green); }
+        .blob2 { width: 500px; height: 500px; bottom: -50px; left: -100px; background: var(--water-blue); }
+        .blob3 { width: 400px; height: 400px; top: 30%; left: 10%; background: var(--accent-yellow); opacity: 0.3; }
+
+        /* 導覽列 */
+        nav {
+            padding: 1.5rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background: rgba(249, 247, 242, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(124, 169, 130, 0.2);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--nature-green); }
+
+        /* 內容容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 首頁 Hero */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--nature-green);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--earth-brown);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-left: 6px solid var(--nature-green);
+            padding-left: 15px;
+            margin-bottom: 2.5rem;
+            color: var(--text-dark);
+        }
+
+        /* 技能網格 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 15px 40px rgba(124, 169, 130, 0.15);
+        }
+
+        .card h3 { color: var(--nature-green); margin-bottom: 1rem; }
+
+        /* 獎項列表 */
+        .award-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--water-blue);
+        }
+
+        .badge {
+            background: var(--nature-green);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+
+        /* --- 照片畫廊 Grid 佈局 --- */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .photo-item {
+            background: white;
+            padding: 12px 12px 40px 12px; /* 底部加寬模擬拍立得/手札感 */
+            box-shadow: 5px 10px 25px rgba(0,0,0,0.08);
+            border-radius: 5px; /* 基礎圓角 */
+            transition: 0.4s ease;
+            position: relative;
+        }
+
+        /* 模擬水彩紙張不規則邊框 */
+        .photo-item:nth-child(odd) {
+            border-radius: 20px 50px 30px 60px / 40px 30px 60px 20px;
+            transform: rotate(-1.5deg);
+        }
+
+        .photo-item:nth-child(even) {
+            border-radius: 40px 20px 50px 30px / 30px 60px 20px 50px;
+            transform: rotate(1.5deg);
+        }
+
+        .photo-item:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover; /* 確保照片比例整齊 */
+            border-radius: 8px;
+            filter: sepia(10%); /* 增加一點點溫暖復古感 */
+        }
+
+        .photo-caption {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: var(--earth-brown);
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: var(--nature-green);
+            color: white;
+            margin-top: 5rem;
+            clip-path: ellipse(120% 100% at 50% 100%);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background: var(--nature-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 25px;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background: white;
+            color: var(--nature-green);
+            border: 2px solid var(--nature-green);
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+            .photo-gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="watercolor-bg">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <nav>
+        <a href="#about">關於我</a>
+        <a href="#skills">專業核心</a>
+        <a href="#awards">成就實錄</a>
+        <a href="#projects">專案經歷</a>
+        <a href="#contact">聯繫我</a>
+    </nav>
+
+    <header class="hero">
+        <h1>[您的姓名]</h1>
+        <p>跨領域農業科技研發者 | 生技製程、AI智慧環控與碳管理專家</p>
+        <a href="#contact" class="btn">開始合作談話</a>
+    </header>
+
+    <div class="container">
+        
+        <section id="about">
+            <h2>關於我 / About Me</h2>
+            <p>我致力於將<b>分子生物學</b>、<b>人工智慧</b>與<b>環境永續</b>三大領域交織。擁有從實驗室製程開發到田間智慧化管理的完整實務經驗。我擅長撰寫結構複雜的國科會計畫，並在跨領域團隊中擔任技術與商業語言的「轉譯者」，推動科技農業的實質落地。</p>
+        </section>
+
+        <section id="skills">
+            <h2>專業核心能力 / Expertise</h2>
+            <div class="skills-grid">
+                <div class="card">
+                    <h3>生技研發與製程</h3>
+                    <p>DNA/RNA 萃取、蛋白純化、發酵技術、作物精準栽培與植醫診斷。</p>
+                </div>
+                <div class="card">
+                    <h3>智慧農業 AI</h3>
+                    <p>AI 智慧環控、IoT 物聯網應用、Power BI 大數據可視化、太陽能設施整合。</p>
+                </div>
+                <div class="card">
+                    <h3>永續與管理</h3>
+                    <p>農業碳盤點規劃、國科會計畫撰寫、跨領域團隊溝通 (AI/經濟/生工)。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards">
+            <h2>成就與實錄 / Achievements</h2>
+            <div class="award-item"><span>2025 農業開放資料黑客松</span> <span class="badge">全國第二名</span></div>
+            <div class="award-item"><span>2025 生物開放數據松</span> <span class="badge">全國第三名</span></div>
+            <div class="award-item"><span>2023 創創火箭營工作坊嘉義</span> <span class="badge">第一名</span></div>
+            <div class="award-item"><span>2025 ACSA 亞洲作物協會大會</span> <span class="badge">報告講者</span></div>
+
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="DSCN9167.JPG" alt="黑客松獲獎照片">
+                    <p class="photo-caption">2025 農業黑客松獲獎</p>
+                </div>
+                <div class="photo-item">
+                    <img src="speech.jpg" alt="ACSA 演講照片">
+                    <p class="photo-caption">ACSA 國際大會專題報告</p>
+                </div>
+                <div class="photo-item">
+                    <img src="lab.jpg" alt="生技實作照片">
+                    <p class="photo-caption">分子生物實驗與數據採集</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>重點專案 / Key Projects</h2>
+            <div class="card" style="margin-bottom: 20px;">
+                <h3>國科會整合型計畫 (2024-2025)</h3>
+                <p><strong>農業設施產業碳盤點及共創低碳栽培體系</strong></p>
+                <p>主導撰寫並執行專案，透過數據驅動設施農業進行碳足跡追蹤與減碳製程優化。</p>
+            </div>
+            <div class="card">
+                <h3>智慧環控系統開發 (2025 ISHS)</h3>
+                <p>運用 AI 演算法於溫室環境自動補償控制，研究成果投稿於國際學術會。跨域協作單位包含台大生工與中興農藝。</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer id="contact">
+        <h2>聯繫我 / Contact Me</h2>
+        <p>Email: yourname@example.com</p>
+        <p>期待與您共同探討農業科技與永續發展的未來。</p>
+        <div style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.8;">
+            © 2026 [您的姓名] | Designed with Nature & Tech
+        </div>
+    </footer>
+
+    <script>
+        // 滾動偵測顯示動畫
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 導覽平滑捲動
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
