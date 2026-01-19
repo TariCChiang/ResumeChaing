@@ -116,7 +116,25 @@
         .about-text {
             flex-grow: 1;
         }
+        /* 專案連結樣式 */
+        .project-link {
+            color: var(--nature-green); /* 使用您定義的自然綠 */
+            text-decoration: none;      /* 移除預設底線 */
+            border-bottom: 1px solid transparent; 
+            transition: 0.3s;
+        }
         
+        .project-link:hover {
+            color: var(--earth-brown);   /* 滑鼠移過換色 */
+            border-bottom: 1px solid var(--earth-brown);
+        }
+        
+        /* 在連結後方加入一個小圖示感（選配） */
+        .project-link::after {
+            content: " 🔗";
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }  
         /* 首頁 Hero */
         .hero {
             text-align: center;
@@ -364,22 +382,38 @@
             <h2>重點專案 / Key Projects</h2>
             <div class="card" style="margin-bottom: 20px;">
                 <h3>國科會整合型計畫 (2020-2021)</h3>
-                <p><strong>草莓生產之關鍵病害管理-草莓生產之關鍵病害管理(3/3)</strong></p>
+                <p><strong>
+                    <a href="https://www.grb.gov.tw/search/planDetail?id=13562887" target="_blank" class="project-link">
+                        草莓生產之關鍵病害管理-草莓生產之關鍵病害管理(3/3)
+                    </a>
+                </strong></p>
                 <p>研發植物防禦蛋白衍生物希望針對草莓炭疽病進行環境友善防治應用 </p>
             </div>
             <div class="card">
                 <h3>國科會整合型計畫 (2021-2022)</h3>
-                <p><strong>草莓生產之關鍵病害管理 (II)-草莓生產之關鍵病害管理 (II)</strong></p>
+                <p><strong>
+                    <a href="https://www.grb.gov.tw/search/planDetail?id=13890259" target="_blank" class="project-link">
+                        草莓生產之關鍵病害管理 (II)-草莓生產之關鍵病害管理 (II)
+                    </a>
+                </strong></p>
                 <p>研發植物防禦蛋白衍生物希望針對草莓炭疽病進行環境友善防治應用</p>
             </div>
             <div class="card">
                 <h3>國科會計畫 (2022-2023)</h3>
-                <p><strong>以植物防禦蛋白LsGRP1誘發廣譜病原抗性之機制與應用</strong></p>
+                <p><strong>
+                    <a href="https://www.grb.gov.tw/search/planDetail?id=14503445" target="_blank" class="project-link">
+                        以植物防禦蛋白LsGRP1誘發廣譜病原抗性之機制與應用
+                    </a>
+                </strong></p>
                 <p>研發植物防禦蛋白衍生物希望針對草莓炭疽病進行環境友善防治應用</p>
             </div>
             <div class="card" style="margin-bottom: 20px;">
                 <h3>國科會整合型計畫 (2023-2026)</h3>
-                <p><strong>農業設施產業碳盤點及共創低碳栽培體系</strong></p>
+                <p><strong>
+                    <a href="https://www.grb.gov.tw/search;keyword=%E8%BE%B2%E6%A5%AD%E8%A8%AD%E6%96%BD%E7%94%A2%E6%A5%AD%E7%A2%B3%E7%9B%A4%E9%BB%9E%E5%8F%8A%E5%85%B1%E5%89%B5%E4%BD%8E%E7%A2%B3%E6%A0%BD%E5%9F%B9%E9%AB%94%E7%B3%BB;type=GRB05" target="_blank" class="project-link">                    
+                        農業設施產業碳盤點及共創低碳栽培體系
+                     </a>
+                </strong></p>
                 <p>撰寫第二年度、第三年度提案報告，並協助設計、規劃及執行專案，整合可透式太陽能板至智慧溫室打造淨零溫室，並跨域與作物統計、人工智慧、碳管理相關人才希望透過數據驅動設施農業進行碳足跡追蹤與減碳製程優化。</p>
             </div>
             <div class="card">
@@ -432,6 +466,7 @@
 </body>
 
 </html>
+
 
 
 
