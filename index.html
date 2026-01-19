@@ -90,7 +90,33 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* 關於我：照片與文字佈局 */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 2rem;
+        }
 
+        .about-image {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 40px 20px 50px 30px / 30px 60px 20px 50px; /* 呼應相簿的不規則感 [cite: 41] */
+            border: 8px solid white;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+            filter: sepia(5%); /* 輕微暖色調  */
+        }
+
+        .about-text {
+            flex-grow: 1;
+        }
+        
         /* 首頁 Hero */
         .hero {
             text-align: center;
@@ -270,13 +296,18 @@
         <a href="#contact" class="btn">開始合作談話</a>
     </header>
 
-    <div class="container">
-        
+    <div class="container">     
         <section id="about">
             <h2>關於我 / About Me</h2>
-            <p>我致力於將<b>分子生物學</b>、<b>人工智慧</b>與<b>環境永續</b>三大領域交織。擁有從實驗室製程開發到田間智慧化管理的完整實務經驗。我擅長撰寫結構複雜的國科會計畫，並在跨領域團隊中擔任技術與商業語言的「轉譯者」，推動科技農業的實質落地。</p>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="您的照片檔名.jpg" alt="Chiang, Min-Jui">
+               </div>
+               <div class="about-text"> 
+                   <p>我致力於將<b>分子生物學</b>、<b>人工智慧</b>與<b>環境永續</b>三大領域交織。擁有從實驗室製程開發到田間智慧化管理的完整實務經驗。我擅長撰寫結構複雜的國科會計畫，並在跨領域團隊中擔任技術與商業語言的「轉譯者」，推動科技農業的實質落地。</p>
+               </div>
+            </div>
         </section>
-
         <section id="skills">
             <h2>專業核心能力 / Expertise</h2>
             <div class="skills-grid">
@@ -290,7 +321,7 @@
                 </div>
                 <div class="card">
                     <h3>永續與管理</h3>
-                    <p>農業碳盤點規劃、國科會計畫撰寫、跨領域團隊溝通 (AI/經濟/生工)。</p>
+                    <p>農業碳盤查規劃、計畫報告撰寫、跨領域團隊溝通 (綠能/AI/淨零/農藝)。</p>
                 </div>
             </div>
         </section>
@@ -401,6 +432,7 @@
 </body>
 
 </html>
+
 
 
 
