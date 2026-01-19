@@ -116,6 +116,41 @@
         .about-text {
             flex-grow: 1;
         }
+
+
+        /* --- 成就分類樣式 --- */
+        .award-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .award-category h3 {
+            font-size: 1.2rem;
+            color: var(--earth-brown);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid var(--water-blue);
+            padding-bottom: 5px;
+            width: fit-content;
+        }
+
+        .award-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--water-blue); [cite: 33]
+        }
+
+        .badge {
+            background: var(--nature-green); [cite: 34]
+            color: white;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
         /* 專案連結樣式 */
         .project-link {
             color: var(--nature-green); /* 使用您定義的自然綠 */
@@ -346,13 +381,20 @@
 
         <section id="awards">
             <h2>成就與實錄 / Achievements</h2>
-            <div class="award-item"><span>2025 農業開放資料黑客松</span> <span class="badge">全國第二名</span></div>
-            <div class="award-item"><span>2025 生物開放數據松</span> <span class="badge">全國第三名</span></div>
-            <div class="award-item"><span>2023 創創火箭營工作坊嘉義</span> <span class="badge">第一名</span></div>
-            <div class="award-item"><span>2024 IMV科技創新獎金競賽</span> <span class="badge">入選複賽</span></div>
-            <div class="award-item"><span>2024 信義房屋社區一家計畫</span> <span class="badge">入選決賽</span></div>
-            <div class="award-item"><span>2020 智慧農業數位分身創新應用競賽</span> <span class="badge">全國12強</span></div>
-            <div class="award-item"><span>2025 ACSA 亞洲作物協會大會</span> <span class="badge">報告講者</span></div>
+            <div class="award-category">
+                <h3>🏆 比賽紀錄</h3>
+                <div class="award-item"><span>2025 農業開放資料黑客松</span> <span class="badge">全國第二名</span></div>
+                <div class="award-item"><span>2025 生物開放數據松</span> <span class="badge">全國第三名</span></div>
+                <div class="award-item"><span>2023 創創火箭營工作坊嘉義</span> <span class="badge">第一名</span></div>
+                <div class="award-item"><span>2024 IMV科技創新獎金競賽</span> <span class="badge">入選複賽</span></div>
+                <div class="award-item"><span>2024 信義房屋社區一家計畫</span> <span class="badge">入選決賽</span></div>
+                <div class="award-item"><span>2020 智慧農業數位分身創新應用競賽</span> <span class="badge">全國12強</span></div>
+                <div class="award-item"><span>2025 ACSA 亞洲作物協會大會</span> <span class="badge">報告講者</span></div>
+            </div>
+            <div class="award-category" style="margin-top: 2rem;">
+                <h3>🎓 學術成就</h3>
+                <div class="award-item"><span>2025 ACSA 亞洲作物協會大會</span> <span class="badge">報告講者</span></div> 
+            </div>
             
             <div class="photo-gallery">
                 <div class="photo-item">
@@ -466,6 +508,7 @@
 </body>
 
 </html>
+
 
 
 
